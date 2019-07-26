@@ -87,11 +87,11 @@ ext {
     AppName = AppName()
     AppNavLogo = AppNavLogo()
 
-//    releaseSigningStoreFile = properties['release.signing.storeFile']
-//    releaseSigningStorePassword = properties['release.signing.storePassword']
-//    releaseSigningKeyAlias = properties['release.signing.keyAlias']
-//    releaseSigningKeyPassword = properties['release.signing.keyPassword']
-//    debugSigningStoreFile = properties['debug.signing.storeFile']
+    releaseSigningStoreFile = properties['release.signing.storeFile']
+    releaseSigningStorePassword = properties['release.signing.storePassword']
+    releaseSigningKeyAlias = properties['release.signing.keyAlias']
+    releaseSigningKeyPassword = properties['release.signing.keyPassword']
+    debugSigningStoreFile = properties['debug.signing.storeFile']
 
     //for package
     //test 测试包专用渠道，alpha 内部透明版，grey灰度版本，beat 公测版，母包 _GAIA_

@@ -31,9 +31,44 @@ android {
                                 APP_ICON           : rootProject.ext.AppIcon,
                                 AppNavLogo         : rootProject.ext.AppNavLogo,]
     }
+
+    //签名
+    signingConfigs {
+        release {
+            storeFile file(rootProject.ext.releaseSigningStoreFile)
+            storePassword rootProject.ext.releaseSigningStorePassword
+            keyAlias rootProject.ext.releaseSigningKeyAlias
+            keyPassword rootProject.ext.releaseSigningKeyPassword
+            v2SigningEnabled true
+        }
+
+        debug {
+            storeFile file(rootProject.ext.debugSigningStoreFile)
+        }
+    }
+
     buildTypes {
         release {
+            ndk {
+                abiFilters "armeabi", "armeabi-v7a"
+            }
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            buildConfigField "boolean", "LOG_DEBUG", "false"//禁止输出LOG信息
+            buildConfigField "boolean", "DEFAULT_TEST_MODE", "false"
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        // 直接在真机上运行
+        debug {
+            ndk {
+                abiFilters "armeabi", "armeabi-v7a"
+            }
+            debuggable true
             minifyEnabled false
+            signingConfig signingConfigs.release
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            buildConfigField "boolean", "DEFAULT_TEST_MODE", "true"//debug 是否是可切换的包
+            buildConfigField "int", "packageCode", "${rootProject.ext.android.versionCode}"
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -48,5 +83,4 @@ dependencies {
     implementation rootProject.ext.androidxAddress
     implementation rootProject.ext.netAddress
     implementation rootProject.ext.otherAddress
-//    implementation('com.tzlog.dotlib:TzLogDotLib:1.0.0@aar')
 }

@@ -3,6 +3,7 @@ package com.tz.basicsmvp.net
 import android.annotation.SuppressLint
 import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.PhoneUtils
+import com.tz.basicsmvp.BuildConfig
 import com.tz.basicsmvp.MyApp
 import com.tz.basicsmvp.net.api.ApiHost
 import com.tz.basicsmvp.net.api.ApiService
@@ -98,12 +99,15 @@ object RetrofitFactory {
     private fun getRetrofit(): Retrofit {
         // 获取retrofit的实例
         return Retrofit.Builder()
-            .baseUrl(ApiHost.TEST_URL)  //自己配置
+            .baseUrl(if(BuildConfig.DEFAULT_TEST_MODE) ApiHost.TEST_URL else ApiHost.RELEASE_URL)
             .client(getOkHttpClient())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+    }
 
+    fun setURLmodel(){
+        service
     }
 
     private fun getOkHttpClient(): OkHttpClient {
