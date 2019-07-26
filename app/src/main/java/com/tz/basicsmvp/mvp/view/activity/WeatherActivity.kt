@@ -2,7 +2,6 @@ package com.tz.basicsmvp.mvp.view.activity
 
 import com.tz.basicsmvp.R
 import com.tz.basicsmvp.mvp.base.BaseActivity
-import com.tzlog.dotlib.KLogChooseActivity
 
 /**
  * @ComputerCode: tianzhen
