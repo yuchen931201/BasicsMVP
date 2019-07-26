@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'android-aspectjx'
+
+//use kotlin annotation
+apply plugin: 'kotlin-kapt'
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+android {
+
+    compileSdkVersion rootProject.ext.android.targetSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        applicationId rootProject.ext.android.applicationId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [APP_NAME           : rootProject.ext.AppName,
+                                APP_ICON           : rootProject.ext.AppIcon,
+                                AppNavLogo         : rootProject.ext.AppNavLogo,]
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation rootProject.ext.androidxAddress
+    implementation rootProject.ext.netAddress
+    implementation rootProject.ext.otherAddress
+//    implementation('com.tzlog.dotlib:TzLogDotLib:1.0.0@aar')
+}

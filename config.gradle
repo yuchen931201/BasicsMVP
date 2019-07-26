@@ -1,0 +1,157 @@
+Properties properties = new Properties()
+properties.load(new FileInputStream(file('local.properties')))
+
+ext {
+
+    //android version
+    android = [
+            applicationId    : "com.tz.basicsmvp",
+            versionCode      : 1,
+            versionName      : "1.0.01",
+            compileSdkVersion: 27,
+            buildToolsVersion: '28.0.3',
+            minSdkVersion    : 17,
+            targetSdkVersion : 28,
+    ]
+
+    //all dependencies version
+    dependVersion = [
+            supportLib       : "27.1.1",
+            androidxappcLib  : "1.0.2",
+            androidxconstrLib: "1.1.3",
+            retrofitLib      : "2.3.0",
+            glideLib         : "4.7.1",
+            rxJavaLib        : "2.1.5",
+            rxAndroidLib     : "2.0.1",
+            okhttpLib        : "3.4.1",
+            flexboxLib       : "0.3.1",
+            ktxIdLib         : "1.0.1",
+            aspectjLib       : "1.8.9",
+            blankjLib        : "1.23.7",
+            permiLib         : "2.0.1",
+    ]
+
+    //android support will be deprecated ,Recommended use of androidx
+    androidAndSupportD = [
+            //            supportv4     : "com.android.support:support-v4:$dependVersion.supportLib",
+            //            appcompatv7   : "com.android.support:appcompat-v7:$dependVersion.supportLib",
+            //            cardview      : "com.android.support:cardview-v7:$dependVersion.supportLib",
+            //            design        : "com.android.support:design:$dependVersion.supportLib",
+            //            annotations   : "com.android.support:support-annotations:$dependVersion.supportLib",
+            androidxappc  : "androidx.appcompat:appcompat:$dependVersion.androidxappcLib",
+            androidxconstr: "androidx.constraintlayout:constraintlayout:$dependVersion.androidxconstrLib",
+    ]
+
+    netWorksD = [
+            retrofit       : "com.squareup.retrofit2:retrofit:$dependVersion.retrofitLib",
+            retrofitGson   : "com.squareup.retrofit2:converter-gson:$dependVersion.retrofitLib",
+            retrofitRxjava2: "com.squareup.retrofit2:adapter-rxjava2:$dependVersion.retrofitLib",
+            okhttp3        : "com.squareup.okhttp3:logging-interceptor:$dependVersion.okhttpLib",
+            rxJava         : "io.reactivex.rxjava2:rxjava:$dependVersion.rxJavaLib",
+            rxAndroid      : "io.reactivex.rxjava2:rxandroid:$dependVersion.rxAndroidLib",
+            glide          : "com.github.bumptech.glide:glide:$dependVersion.glideLib",
+            glideCompiler  : "com.github.bumptech.glide:compiler:$dependVersion.glideLib",
+            glideOkhttp    : "com.github.bumptech.glide:okhttp3-integration:$dependVersion.glideLib",
+    ]
+
+    othersD = [
+            flexbox : "com.google.android:flexbox:$dependVersion.flexboxLib", //google 开源布局库
+            ktxId   : "androidx.core:core-ktx:$dependVersion.ktxIdLib", //kotlin butterknife
+            aspectj : "org.aspectj:aspectjrt:$dependVersion.aspectjLib", //AOP
+            blankj  : "com.blankj:utilcodex:$dependVersion.blankjLib",
+            permi   : "com.yanzhenjie.permission:x:$dependVersion.permiLib",
+            eventbus: "org.greenrobot:eventbus:3.0.0",
+            logdot  : "com.tzlog.dotlib:TzLogDotLib:0.1.16@aar",
+    ]
+
+    androidxAddress = androidAndSupportD.values()
+    netAddress = netWorksD.values()
+    otherAddress = othersD.values()
+
+    //微信
+    WechatAppId = getAppId("wechat")
+    WechatAppKey = getAppKey("wechat")
+    //QQ
+    QQAppId = getAppId("QQ")
+    QQAppKey = getAppKey("QQ")
+    //微博
+    WeiboAppId = getAppId("weibo")
+    WeiboAppKey = getAppKey("weibo")
+    //友盟统计 appkey
+    UmengAppId = getAppId("Umeng")
+    //友盟推送 pushSecret
+    UmengAppKey = getAppKey("Umeng")
+    //应用图标
+    AppIcon = AppIcon()
+    //应用名称
+    AppName = AppName()
+    AppNavLogo = AppNavLogo()
+
+//    releaseSigningStoreFile = properties['release.signing.storeFile']
+//    releaseSigningStorePassword = properties['release.signing.storePassword']
+//    releaseSigningKeyAlias = properties['release.signing.keyAlias']
+//    releaseSigningKeyPassword = properties['release.signing.keyPassword']
+//    debugSigningStoreFile = properties['debug.signing.storeFile']
+
+    //for package
+    //test 测试包专用渠道，alpha 内部透明版，grey灰度版本，beat 公测版，母包 _GAIA_
+    defaultChannel = '_GAIA_'
+
+    //用于同渠道同版本，不同审核包，
+    // （如果某渠道，某版本，因为某个原因被下架，但是已经有一部分用户因为灰度下载到了本版本，为了不让这一部分用户被影响，再次打审核包的时候，packageCode+1,
+    packageCode = 1
+
+}
+
+static HashMap<String, String> getOtherMVPMaps(int type) {
+    //TODO something
+    return []
+}
+
+static HashMap<String, String> getTestMVPMaps(int type) {
+    //TODO something
+    return []
+}
+
+static HashMap<String, String> getBasicMVPMaps(int type) {
+    if (type == 1) {
+        //各种 第三方 申请 的 id, {dianxin-电信 yidong-移动 AppName-应用图标 AppIcon-应用icon}
+        return [wechat: "wxc****123", QQ: "123***123", Umeng: "um****132"]
+    } else if (type == 2) {
+        //各种 第三方 申请 的 key  {gaode-高德地图}
+        return [wechat: "", QQ: "", Umeng: ""]
+    } else {
+        // 应用名， 应用图标，主页顶部正中间logo, 如果还有别的需要加，添加到此map 里面即可
+        return [AppName: "@string/app_name", AppIcon: "@mipmap/ic_launcher", AppNavLogo: "app_nav_logo"]
+    }
+}
+
+HashMap getAppMap(int type) {
+    if (rootProject.ext.android.applicationId == "com.tz.basicsmvp") {
+        return getBasicMVPMaps(type)
+    } else if (rootProject.ext.android.applicationId == "com.tz.other") {
+        return getOtherMVPMaps(type)
+    } else {
+        return getTestMVPMaps(type)
+    }
+}
+
+String getAppId(String app) {
+    return getAppMap(1)[app]
+}
+
+String getAppKey(String app) {
+    return getAppMap(2)[app]
+}
+
+String AppIcon() {
+    return getAppMap(3)["AppIcon"]
+}
+
+String AppNavLogo() {
+    return getAppMap(3)["AppNavLogo"]
+}
+
+String AppName() {
+    return getAppMap(3)["AppName"]
+}

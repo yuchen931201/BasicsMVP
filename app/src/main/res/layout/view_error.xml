@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/error_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <TextView
+            android:id="@+id/error_view_tv"
+            style="@style/MultipleStatusView.Content"
+            android:text="@string/error_view_hint"/>
+
+    <TextView
+            android:id="@+id/error_retry_view"
+            style="@style/MultipleStatusView.Content"
+            android:layout_below="@+id/error_view_tv"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/retry_scene"
+            tools:visibility="gone"/>
+</RelativeLayout>
