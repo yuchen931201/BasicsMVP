@@ -45,6 +45,9 @@ class MainActivity : BaseActivity(), MainContract.View{
     override fun setMainPageData(mpb: MainPageBean) {
         getStatusView()?.showContent()
         text_view_s.text = "我是服务器返回文字，动态设置成功\n${GsonUtils.toJson(mpb)}"
+        text_view_s.setOnClickListener {
+            onclick()
+        }
     }
 
 
