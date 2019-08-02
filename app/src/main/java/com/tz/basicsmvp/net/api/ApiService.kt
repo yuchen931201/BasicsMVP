@@ -1,5 +1,6 @@
 package com.tz.basicsmvp.net.api
 
+import com.tz.basicsmvp.mvp.base.BaseJsonBean
 import com.tz.basicsmvp.mvp.model.bean.MainPageBean
 import io.reactivex.Observable
 import retrofit2.http.*
@@ -14,8 +15,8 @@ import retrofit2.http.*
  **/
 interface ApiService {
 
-    @GET("v2/user?")
-    fun getHomePageData(@Query("id") id:String):Observable<MainPageBean>
+    @GET("weather/query?")
+    fun getWeatherData(@Query("city") id:String, @Query("citycode") citycode:String = "", @Query("cityid") cityid:String = "", @Query("location") location:String="" ): Observable<BaseJsonBean<MainPageBean>>
 
     @POST("v2/avatar?")
     @FormUrlEncoded

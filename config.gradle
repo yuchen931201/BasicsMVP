@@ -25,7 +25,6 @@ ext {
             rxAndroidLib     : "2.0.1",
             okhttpLib        : "3.4.1",
             flexboxLib       : "0.3.1",
-            ktxIdLib         : "1.0.1",
             aspectjLib       : "1.8.9",
             blankjLib        : "1.23.7",
             permiLib         : "2.0.1",
@@ -56,10 +55,11 @@ ext {
 
     othersD = [
             flexbox : "com.google.android:flexbox:$dependVersion.flexboxLib", //google 开源布局库
-            ktxId   : "androidx.core:core-ktx:$dependVersion.ktxIdLib", //kotlin butterknife
-            aspectj : "org.aspectj:aspectjrt:$dependVersion.aspectjLib", //AOP
+            ktxId   : "androidx.core:core-ktx:1.0.1", //kotlin 扩展
+//            aspectj : "org.aspectj:aspectjrt:$dependVersion.aspectjLib", //AOP
             blankj  : "com.blankj:utilcodex:$dependVersion.blankjLib",
             permi   : "com.yanzhenjie.permission:x:$dependVersion.permiLib",
+            adapter   : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47",
             eventbus: "org.greenrobot:eventbus:3.0.0",
             logdot  : "com.tzlog.dotlib:TzLogDotLib:0.1.16@aar",
     ]

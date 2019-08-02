@@ -11,7 +11,7 @@ import com.tz.basicsmvp.mvp.model.MainPageModel
  * @QQ: 959699751
  * @CreateTime: Created on 2019/5/18 16:38
  * @Package: com.tz.basicsmvp.mvp.presenter
- * @Description:
+ * @Description: Persenter 负责逻辑的处理
  **/
 class MainPagePersenter : BasePresenter<MainContract.View>(), MainContract.Presenter {
 
@@ -19,12 +19,19 @@ class MainPagePersenter : BasePresenter<MainContract.View>(), MainContract.Prese
         MainPageModel()
     }
 
-    override fun doSceneGetData(id: String) {
+    override fun doSceneGetData(city: String) {
         checkViewAttached()
-        val disposable = mainPageModel.getHomePageData(id)
-            .subscribe({ mainBean ->
+        val disposable = mainPageModel.getHomePageData(city)
+            .subscribe({ jsonBean ->
                 mRootView?.apply {
-                    setMainPageData(mainBean)
+                    if(jsonBean.status == 0){
+                        setMainPageData(jsonBean.result)
+                    }else if(jsonBean.status == -1){
+                        showNoData()
+                    }else{
+                        //其它错误
+                        showNoData()
+                    }
                 }
             }, { onError ->
                 LogUtils.e(onError.message)

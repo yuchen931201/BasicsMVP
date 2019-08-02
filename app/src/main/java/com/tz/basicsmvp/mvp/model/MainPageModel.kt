@@ -1,8 +1,9 @@
 package com.tz.basicsmvp.mvp.model
 
-import com.tz.basicsmvp.rx.scheduler.SchedulerUtils
+import com.tz.basicsmvp.mvp.base.BaseJsonBean
 import com.tz.basicsmvp.mvp.model.bean.MainPageBean
 import com.tz.basicsmvp.net.RetrofitFactory
+import com.tz.basicsmvp.rx.scheduler.SchedulerUtils
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
@@ -12,12 +13,12 @@ import io.reactivex.schedulers.Schedulers
  * @QQ: 959699751
  * @CreateTime: Created on 2019/5/18 16:26
  * @Package: com.tz.basicsmvp.mvp.model
- * @Description:
+ * @Description: Model 负责数据模型的处理
  **/
 class MainPageModel {
 
-    fun getHomePageData(id: String): Observable<MainPageBean>{
-        return RetrofitFactory.service.getHomePageData(id)
+    fun getHomePageData(city: String): Observable<BaseJsonBean<MainPageBean>>{
+        return RetrofitFactory.service.getWeatherData(city)
             .subscribeOn(Schedulers.io())
             .compose(SchedulerUtils.ioToMain())
     }

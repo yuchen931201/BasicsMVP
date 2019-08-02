@@ -2,8 +2,8 @@ package com.tz.basicsmvp.mvp.view.activity
 
 import android.Manifest
 import android.annotation.SuppressLint
+import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.LogUtils
-import com.tz.basicsmvp.MyApp
 import com.tz.basicsmvp.R
 import com.tz.basicsmvp.mvp.Contract.MainContract
 import com.tz.basicsmvp.mvp.base.BaseActivity
@@ -21,23 +21,30 @@ class MainActivity : BaseActivity(), MainContract.View{
         mPresenter.attachView(this)
     }
 
+    override fun layoutType(): Int {
+        return TYPE_TITLE_NORMAL
+    }
+
     override fun layoutId(): Int { return R.layout.activity_main }
 
     override fun initData() {
         //联网发送请求
-        mPresenter.doSceneGetData("123")
+
     }
 
-    override fun initView() {
+    override fun onFinishCreateView() {
         text_view_s.text = "我是测试文字，静态设置成功"
+        getStatusView()?.showEmpty()
     }
 
-    override fun start() {
+    override fun doScene() {
+        mPresenter.doSceneGetData("上海")
     }
 
     @SuppressLint("SetTextI18n")
     override fun setMainPageData(mpb: MainPageBean) {
-        text_view_s.text = "我是服务器返回文字，动态设置成功${mpb.nickName}"
+        getStatusView()?.showContent()
+        text_view_s.text = "我是服务器返回文字，动态设置成功\n${GsonUtils.toJson(mpb)}"
     }
 
 

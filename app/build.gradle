@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-apply plugin: 'android-aspectjx'
+//apply plugin: 'android-aspectjx'
 
 //use kotlin annotation
 apply plugin: 'kotlin-kapt'
@@ -30,6 +30,11 @@ android {
         manifestPlaceholders = [APP_NAME           : rootProject.ext.AppName,
                                 APP_ICON           : rootProject.ext.AppIcon,
                                 AppNavLogo         : rootProject.ext.AppNavLogo,]
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
+        }
     }
 
     //签名
@@ -72,14 +77,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation rootProject.ext.androidxAddress
     implementation rootProject.ext.netAddress
     implementation rootProject.ext.otherAddress

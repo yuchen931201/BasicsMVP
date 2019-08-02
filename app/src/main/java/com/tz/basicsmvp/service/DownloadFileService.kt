@@ -8,7 +8,7 @@ import android.os.IBinder
 import androidx.collection.ArrayMap
 import cn.eclicks.drivingtest.pool.*
 import com.blankj.utilcode.util.LogUtils
-import com.tz.basicsmvp.utils.SharePreferencesHelper
+import com.tz.basicsmvp.pool.NormalTask
 import java.util.concurrent.Future
 
 /**
@@ -59,7 +59,7 @@ class DownloadFileService : Service() {
     val binder: LocalBinder = LocalBinder()
     internal var executor: EasyThread? = null
     internal var mRequests: ArrayMap<String, Future<PoolBundle>> = ArrayMap()
-    internal var mTasks: ArrayMap<String,NormalTask> = ArrayMap()
+    internal var mTasks: ArrayMap<String, NormalTask> = ArrayMap()
 
     override fun onCreate() {
         super.onCreate()
@@ -164,7 +164,7 @@ class DownloadFileService : Service() {
         }
     }
 
-    private fun callableTask(task :NormalTask):Future<PoolBundle>{
+    private fun callableTask(task : NormalTask):Future<PoolBundle>{
         var future :Future<PoolBundle>? = null
         executor?.setName(NAME_CALLABLE_TASK)?.run {
             task?.let {

@@ -1,4 +1,4 @@
-package com.hazz.kotlinmvp.rx.scheduler
+package com.tz.basicsmvp.rx.scheduler
 
 import io.reactivex.*
 import org.reactivestreams.Publisher

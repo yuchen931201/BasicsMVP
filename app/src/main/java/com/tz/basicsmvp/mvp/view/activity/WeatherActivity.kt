@@ -12,6 +12,17 @@ import com.tz.basicsmvp.mvp.base.BaseActivity
  * @Description:
  **/
 class WeatherActivity : BaseActivity(){
+    override fun layoutType(): Int {
+        return TYPE_TITLE_NORMAL
+    }
+
+    override fun onFinishCreateView() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun doScene() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override fun layoutId(): Int { return R.layout.activity_weather }
 
@@ -19,12 +30,6 @@ class WeatherActivity : BaseActivity(){
 //        KLogChooseActivity.enterForResult()
     }
 
-    override fun initView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
-    override fun start() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
 }
