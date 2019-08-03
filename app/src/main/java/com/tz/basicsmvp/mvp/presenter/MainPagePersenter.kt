@@ -11,25 +11,32 @@ import com.tz.basicsmvp.mvp.model.MainPageModel
  * @QQ: 959699751
  * @CreateTime: Created on 2019/5/18 16:38
  * @Package: com.tz.basicsmvp.mvp.presenter
- * @Description:
+ * @Description: Persenter 负责逻辑的处理
  **/
 class MainPagePersenter : BasePresenter<MainContract.View>(), MainContract.Presenter {
 
-    private val mainPageModel by lazy {
-        MainPageModel()
-    }
+    private val mainPageModel by lazy { MainPageModel() }
 
-    override fun doSceneGetData(id: String) {
+    override fun doSceneGetData(city: String) {
         checkViewAttached()
-        val disposable = mainPageModel.getHomePageData(id)
-            .subscribe({ mainBean ->
-                mRootView?.apply {
-                    setMainPageData(mainBean)
+        mRootView?.showLoading()
+        val disposable = mainPageModel.getHomePageData(city)
+            .subscribe({ jsonBean ->
+                mRootView?.let {
+                    it.dismissLoading()
+                    when {
+                        jsonBean.status == 0 -> it.setMainPageData(jsonBean.result)
+                        jsonBean.status == -1 -> it.showNoData()
+                        else -> {//其它错误
+                            it.showNoData()
+                        }
+                    }
                 }
             }, { onError ->
                 LogUtils.e(onError.message)
-                mRootView?.apply {
-                    showNetError()
+                mRootView?.let {
+                    it.dismissLoading()
+                    it.showNetError()
                 }
             })
         //切记要添加管理队列
@@ -38,6 +45,7 @@ class MainPagePersenter : BasePresenter<MainContract.View>(), MainContract.Prese
 
     override fun doSceneLoadMore(page: Int) {
         //TODO do everything
+        //doSceneGetData()
     }
 
 }

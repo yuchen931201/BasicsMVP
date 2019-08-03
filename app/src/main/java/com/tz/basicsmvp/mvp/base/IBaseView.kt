@@ -14,4 +14,8 @@ interface IBaseView {
 
     fun dismissLoading()
 
+    fun showNoData()
+
+    fun showNetError()
+
 }

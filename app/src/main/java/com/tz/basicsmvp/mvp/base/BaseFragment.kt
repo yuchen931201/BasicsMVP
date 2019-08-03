@@ -10,11 +10,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.NonNull
 import com.tz.basicsmvp.MyApp
 import com.tz.basicsmvp.mvp.view.custom.MultipleStatusView
 import com.yanzhenjie.permission.Action
 import com.yanzhenjie.permission.AndPermission
-import io.reactivex.annotations.NonNull
+
+//import io.reactivex.annotations.NonNull
 
 /**
 * @ComputerCode: tianzhen

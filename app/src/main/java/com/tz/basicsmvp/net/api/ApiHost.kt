@@ -12,4 +12,7 @@ object ApiHost {
     const val TEST_URL = "http://test.baidu.com/api/"
     const val PREPARE_URL = "http://prepare.baidu.com/api/"
     const val RELEASE_URL = "http://release.baidu.com/api/"
+
+
+    const val ALI_API_URL01 = "http://jisutqybmf.market.alicloudapi.com/" //weather/query
 }

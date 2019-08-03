@@ -1,14 +1,15 @@
-package cn.eclicks.drivingtest.pool
+package com.tz.basicsmvp.pool
 
+import cn.eclicks.drivingtest.pool.PoolBundle
+import cn.eclicks.drivingtest.pool.Result
 import com.blankj.utilcode.util.LogUtils
 import com.tz.basicsmvp.net.download.DownloadUtils
 import com.tz.basicsmvp.service.DownloadFileService
 import com.tz.basicsmvp.utils.CommonPreferences
 import com.tz.basicsmvp.utils.SharePreferencesHelper
 import com.tz.basicsmvp.utils.StorageUtils
-import org.greenrobot.eventbus.EventBus
+//import org.greenrobot.eventbus.EventBus
 import java.io.File
-import java.util.*
 import java.util.concurrent.Callable
 
 /**
@@ -19,7 +20,7 @@ import java.util.concurrent.Callable
  * @Package: cn.eclicks.drivingtest.pool
  * @Description:
  **/
-class NormalTask(private val params:PoolBundle) :Runnable,Callable<PoolBundle>{
+class NormalTask(private val params: PoolBundle) : Runnable, Callable<PoolBundle> {
 
     internal var mStatus: Status? = null
     internal var mProgress: Int = 0
@@ -104,7 +105,7 @@ class NormalTask(private val params:PoolBundle) :Runnable,Callable<PoolBundle>{
                 }
             }
         }
-        EventBus.getDefault().post(params)
+        //EventBus.getDefault().post(params)
     }
 
     enum class Status constructor(internal var value: Int) {

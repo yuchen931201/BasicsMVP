@@ -1,1 +1,2 @@
-include ':app', ':adapterLibrary'
+include ':app'
+//project(':adapterLib').projectDir = new File('adapterLibrary')
