@@ -20,7 +20,7 @@ class MainActivity : BaseActivity(), MainContract.View{
     }
 
     override fun layoutType(): Int {
-        return TYPE_TITLE_NORMAL
+        return TYPE_FULL_SCREEN
     }
 
     override fun layoutId(): Int { return R.layout.activity_main }
@@ -30,6 +30,9 @@ class MainActivity : BaseActivity(), MainContract.View{
         //getStatusView()?.showEmpty()
         text_view_s.setOnClickListener {
             WeatherActivity.enter(this)
+        }
+        tv_status_bar.setOnClickListener {
+            StatusBarActivity.enter(this)
         }
     }
 

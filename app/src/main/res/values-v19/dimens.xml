@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="toolBarPaddingTop">25dp</dimen>
+    <dimen name="toolBarHeight">73dp</dimen>
+
+</resources>

@@ -4,6 +4,9 @@ import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import com.tz.basicsmvp.R
 import com.tz.basicsmvp.mvp.base.BaseActivity.Companion.TYPE_FULL_SCREEN
 import com.tz.basicsmvp.mvp.base.BaseActivity.Companion.TYPE_TITLE_NORMAL
@@ -22,17 +25,28 @@ class BaseUIController<T> constructor(t: T) : IBaseUIController where T : Activi
     private val activity: T by lazy { t }
     private var statusView: MultipleStatusView? = null
 
-    override fun initActivity() {
+    private var iv_left_back: ImageView? =null
+    private var tv_title: TextView? =null
+    private var tool_bar: Toolbar? =null
+
+    override fun getRootView() :View{
         val inflater = LayoutInflater.from(activity)
-        val v: View = when (activity.layoutType()) {
+        val v: View
+        when (activity.layoutType()) {
             TYPE_TITLE_NORMAL -> {
-                inflater.inflate(R.layout.base_root_view, null)
+                v = inflater.inflate(R.layout.root_title_view, null)
+                iv_left_back = v.findViewById(R.id.iv_left_back)
+                tv_title = v.findViewById(R.id.tv_title)
+                tool_bar = v.findViewById(R.id.tool_bar)
+                iv_left_back?.setOnClickListener {
+                    activity.finish()
+                }
             }
             TYPE_FULL_SCREEN -> {
-                inflater.inflate(R.layout.base_root_view, null)
+                v = inflater.inflate(R.layout.root_full_screen_view, null)
             }
             else -> {
-                inflater.inflate(R.layout.base_root_view, null)
+                v = inflater.inflate(R.layout.root_title_view, null)
             }
         }
         statusView = v.findViewById(R.id.status_view)
@@ -41,9 +55,16 @@ class BaseUIController<T> constructor(t: T) : IBaseUIController where T : Activi
             layoutParams =
                 ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         })
-        activity.setContentView(v)
-        activity.onFinishCreateView()
         initListener()
+        return v
+    }
+
+    override fun setTitle(s: String){
+        tv_title?.text = s
+    }
+
+    override fun getToolbar(): Toolbar?{
+        return tool_bar
     }
 
     override fun getStatusView(): MultipleStatusView? {

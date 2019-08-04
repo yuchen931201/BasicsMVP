@@ -16,7 +16,7 @@
             android:label="${APP_NAME}"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme"
+            android:theme="@style/TranslucentStatusTheme"
             tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".mvp.view.activity.MainActivity">
             <intent-filter>
@@ -27,6 +27,7 @@
         </activity>
 
         <activity android:name=".mvp.view.activity.WeatherActivity"/>
+        <activity android:name=".mvp.view.activity.StatusBarActivity"/>
     </application>
 
 </manifest>

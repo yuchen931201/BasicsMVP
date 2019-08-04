@@ -46,6 +46,7 @@ class WeatherActivity : BaseActivity(), WeatherContract.View {
     override fun layoutId(): Int { return R.layout.activity_weather }
 
     override fun onFinishCreateView() {
+        setTitle("天气")
         doScene()
         //KLogChooseActivity.enterForResult()
     }

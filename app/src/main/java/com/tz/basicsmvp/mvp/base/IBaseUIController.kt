@@ -1,5 +1,7 @@
 package com.tz.basicsmvp.mvp.base
 
+import android.view.View
+import androidx.appcompat.widget.Toolbar
 import com.tz.basicsmvp.mvp.view.custom.MultipleStatusView
 
 /**
@@ -15,7 +17,11 @@ interface IBaseUIController {
 
     fun getStatusView(): MultipleStatusView?
 
-    fun initActivity()
+    fun setTitle(s: String)
+
+    fun getToolbar(): Toolbar?
+
+    fun getRootView(): View
 
     fun onDestroy()
 

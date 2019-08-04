@@ -8,6 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TranslucentStatusTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+
     <style name="MultipleStatusView"/>
     <style name="MultipleStatusView.Content">
         <item name="android:layout_width">wrap_content</item>

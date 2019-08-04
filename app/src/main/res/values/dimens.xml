@@ -5,4 +5,8 @@
     <dimen name="textSize_small_10">10sp</dimen>
 
     <dimen name="division_line">0.5dp</dimen>
+
+    <dimen name="toolBarPaddingTop">0dp</dimen>
+    <dimen name="toolBarHeight">73dp</dimen>
+
 </resources>
