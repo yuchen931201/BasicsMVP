@@ -66,8 +66,9 @@ abstract class BaseActivity : AppCompatActivity(), IBaseActivity {
      * */
     private fun initToolBar(){
         uiController.getToolbar()?.run {
-            this.setPadding(0,getStatusBarHeight(),0,0)
-            this.layoutParams.height = (getStatusBarHeight() + ScreenUtils.dp2px(this@BaseActivity,TOOLBAR_HEIGHT.toFloat())).toInt()
+            this.setPadding(0,uiController.getStatusBarHeight(),0,0)
+            this.layoutParams.height = (uiController.getStatusBarHeight() +
+                    ScreenUtils.dp2px(this@BaseActivity,TOOLBAR_HEIGHT.toFloat())).toInt()
             setSupportActionBar(this)
         }
     }
@@ -81,71 +82,13 @@ abstract class BaseActivity : AppCompatActivity(), IBaseActivity {
         uiController.setTitle(s)
     }
 
-    fun getStatusBarHeight(): Int {
-        var statusBarHeight = 0
-        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
-        if (resourceId > 0) {
-            statusBarHeight = resources.getDimensionPixelSize(resourceId)
-        }
-        //LogUtils.d("CompatToolbar", "状态栏高度：" + px2dp(statusBarHeight.toFloat()) + "dp")
-        return statusBarHeight
-    }
-
     /**
      * 设置Android状态栏的字体颜色，状态栏为亮色的时候字体和图标是黑色，状态栏为暗色的时候字体和图标为白色
-     *
      * @param dark 状态栏字体和图标是否为深色
      */
     protected fun setStatusBarFontDark(dark: Boolean) {
-        // 小米MIUI
-        try {
-            val window = window
-            val clazz = getWindow().javaClass
-            val layoutParams = Class.forName("android.view.MiuiWindowManager\$LayoutParams")
-            val field = layoutParams.getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE")
-            val darkModeFlag = field.getInt(layoutParams)
-            val extraFlagField =
-                clazz.getMethod("setExtraFlags", Int::class.javaPrimitiveType, Int::class.javaPrimitiveType)
-            if (dark) {    //状态栏亮色且黑色字体
-                extraFlagField.invoke(window, darkModeFlag, darkModeFlag)
-            } else {       //清除黑色字体
-                extraFlagField.invoke(window, 0, darkModeFlag)
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-        // 魅族FlymeUI
-        try {
-            val window = window
-            val lp = window.attributes
-            val darkFlag = WindowManager.LayoutParams::class.java.getDeclaredField("MEIZU_FLAG_DARK_STATUS_BAR_ICON")
-            val meizuFlags = WindowManager.LayoutParams::class.java.getDeclaredField("meizuFlags")
-            darkFlag.isAccessible = true
-            meizuFlags.isAccessible = true
-            val bit = darkFlag.getInt(null)
-            var value = meizuFlags.getInt(lp)
-            if (dark) {
-                value = value or bit
-            } else {
-                value = value and bit.inv()
-            }
-            meizuFlags.setInt(lp, value)
-            window.attributes = lp
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-        // android6.0+系统
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (dark) {
-                window.decorView.systemUiVisibility =
-                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            }
-        }
+        uiController.setStatusBarFontDark(dark)
     }
-
-
 
     override fun onDestroy() {
         super.onDestroy()
