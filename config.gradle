@@ -62,6 +62,8 @@ ext {
             adapter   : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47",
             eventbus: "org.greenrobot:eventbus:3.0.0",
             logdot  : "com.tzlog.dotlib:TzLogDotLib:0.1.16@aar",
+            smartswipe  : "com.billy.android:smart-swipe:1.0.4",
+            smartdraw  : "com.wuyr:arrowdrawable:1.0.1",
     ]
 
     androidxAddress = androidAndSupportD.values()

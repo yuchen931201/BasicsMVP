@@ -1,8 +1,6 @@
 package com.tz.basicsmvp.mvp.view.activity
 
-import android.Manifest
 import android.annotation.SuppressLint
-import com.blankj.utilcode.util.GsonUtils
 import com.tz.basicsmvp.R
 import com.tz.basicsmvp.mvp.Contract.MainContract
 import com.tz.basicsmvp.mvp.base.BaseActivity

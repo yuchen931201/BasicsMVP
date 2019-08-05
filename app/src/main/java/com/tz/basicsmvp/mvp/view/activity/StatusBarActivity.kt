@@ -24,7 +24,7 @@ class StatusBarActivity :BaseActivity(){
     }
 
     override fun onFinishCreateView() {
-        setStatusBarFontDark(true)
+        setStatusBarFontDark(false)
     }
 
     override fun doScene() {
