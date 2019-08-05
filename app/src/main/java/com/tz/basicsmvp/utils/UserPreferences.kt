@@ -13,9 +13,11 @@ import com.tz.basicsmvp.MyApp
  * @Package: com.tz.basicsmvp.utils
  * @Description:
  **/
-class UserPreferences <T> constructor(key:String, value:T) :SharePreferencesHelper<T>(key, value){
+class UserPreferences <T> constructor(key:String, value:T):SharePreferencesHelper<T>(key, value){
 
     companion object{
+
+        const val KEY_USER_NAME = "key_user_name"
 
         var prefs: SharedPreferences
             get() = MyApp.context.getSharedPreferences(user_file_name, Context.MODE_PRIVATE)
@@ -35,6 +37,10 @@ class UserPreferences <T> constructor(key:String, value:T) :SharePreferencesHelp
             prefs.edit().remove(key).apply()
         }
 
+    }
+
+    init {
+        putSharedPreferences(key,value)
     }
 
     @SuppressLint("CommitPrefEdits")

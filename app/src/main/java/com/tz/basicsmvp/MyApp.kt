@@ -9,6 +9,9 @@ import android.os.Bundle
 import com.billy.android.swipe.SmartSwipeBack
 import com.blankj.utilcode.util.LogUtils
 import com.tz.basicsmvp.mvp.view.activity.MainActivity
+import com.tz.basicsmvp.utils.core.ImageGo
+import com.tz.basicsmvp.utils.core.strategy.ImageOptions
+import com.tz.basicsmvp.utils.glide.GlideImageStrategy
 import kotlin.properties.Delegates
 
 /**
@@ -42,6 +45,7 @@ class MyApp : Application() {
         LogUtils.getConfig().isLogSwitch = BuildConfig.DEBUG
         this.registerActivityLifecycleCallbacks(mActivityLifecycleCallbacks)
         initSwipe()
+        initGlide()
     }
 
     fun initSwipe() {
@@ -52,6 +56,13 @@ class MyApp : Application() {
             SmartSwipeBack.activitySlidingBack(this,
                 SmartSwipeBack.ActivitySwipeBackFilter { return@ActivitySwipeBackFilter it !is MainActivity })
         }
+    }
+
+    fun initGlide(){
+        ImageGo
+            .setDebug(BuildConfig.DEBUG)
+            .setStrategy(GlideImageStrategy())  // 图片加载策略
+            .setDefaultBuilder(ImageOptions.Builder())  // 图片加载配置属性，可使用默认属性
     }
 
     private val mActivityLifecycleCallbacks = object : ActivityLifecycleCallbacks {

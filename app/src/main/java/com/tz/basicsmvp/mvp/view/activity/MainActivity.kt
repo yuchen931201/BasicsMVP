@@ -6,6 +6,7 @@ import com.tz.basicsmvp.mvp.Contract.MainContract
 import com.tz.basicsmvp.mvp.base.BaseActivity
 import com.tz.basicsmvp.mvp.model.bean.MainPageBean
 import com.tz.basicsmvp.mvp.presenter.MainPagePersenter
+import com.tz.basicsmvp.utils.UserPreferences
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), MainContract.View{
@@ -32,6 +33,7 @@ class MainActivity : BaseActivity(), MainContract.View{
         tv_status_bar.setOnClickListener {
             StatusBarActivity.enter(this)
         }
+        UserPreferences(UserPreferences.KEY_USER_NAME,"123")
     }
 
     override fun doScene() {

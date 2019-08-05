@@ -32,6 +32,10 @@ class CommonPreferences<T> constructor(key:String, value:T) :SharePreferencesHel
         }
     }
 
+    init {
+        putSharedPreferences(key, value)
+    }
+
     @SuppressLint("CommitPrefEdits")
     override fun putSharedPreferences(name: String, value: T) = with(prefs.edit()) {
         when (value) {
