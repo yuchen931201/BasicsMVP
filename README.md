@@ -24,7 +24,7 @@ kotlin的MVP设计模式 基础框架, 框架正在建设中...
 13. packer多渠道打包 --------------------- 20%
 14. 常用UI(dialog window浮层等) ---------- 0%
 15. 弹框周期管理 ------------------------- 90%
-16. webview封装scheme和jsBridge---------- 0%
+16. WebView封装scheme和jsBridge---------- 0%
 17. 视频与直播播放器----------------------- 0%
 18. 多文件上传和断点下载------------------- 10%
 19. 常用动画封装工具 ---------------------- 0%
@@ -34,8 +34,11 @@ kotlin的MVP设计模式 基础框架, 框架正在建设中...
 23. activity侧滑finish ------------------ 100%
 24. 组件化 ------------------------------ 0%
 25. 全局捕获异常消费避免崩溃 --------------- 10%
+26. 增量更新 ---------------------------- 0%
 
 ## 支持库 
+
+[推荐阅读java23种设计模式](http://c.biancheng.net/design_pattern/)
 
 [BaseRecyclerViewAdapterHelper适配器](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
 
@@ -46,7 +49,6 @@ kotlin的MVP设计模式 基础框架, 框架正在建设中...
 [滑动侧滑管理工具](https://github.com/luckybilly/SmartSwipe)
 
 [glide支持GIF和blur](https://github.com/pingerx/ImageGo)
-
 
 
 ## 项目地址

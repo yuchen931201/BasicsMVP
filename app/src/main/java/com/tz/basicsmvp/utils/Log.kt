@@ -1,6 +1,7 @@
 package com.tz.basicsmvp.utils
 
 import com.blankj.utilcode.util.LogUtils
+import com.tzlog.dotlib.KLog
 
 /**
  * @ComputerCode: tianzhen
@@ -14,6 +15,7 @@ class Log{
 
     fun e(vararg content:Any){
         LogUtils.e(content)
+        KLog.storage(true, "content")
     }
 
     fun i(vararg content:Any){
