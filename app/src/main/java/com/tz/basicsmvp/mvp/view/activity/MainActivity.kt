@@ -33,25 +33,52 @@ class MainActivity : BaseActivity(), MainContract.View{
     override fun onFinishCreateView() {
 //        text_view_s.text = "我是测试文字，静态设置成功"
         //getStatusView()?.showEmpty()
-//        text_view_s.setOnClickListener {
-//            WeatherActivity.enter(this)
-//        }
         mData = arrayListOf()
         mData?.run {
-            for(i in 0..4 step 1 ){
+            for(i in 0..24 step 1 ){
                 when(i){
-                    0 -> this.add(MainData("查看上海天气"))
-                    1 -> this.add(MainData("无状态栏"))
+                    0 -> this.add(MainData("查看上海天气$i",R.mipmap.image01))
+                    1 -> this.add(MainData("无状态栏$i",R.mipmap.image02))
+                    2 -> this.add(MainData("test$i",R.mipmap.image03))
+                    3 -> this.add(MainData("test$i",R.mipmap.image04))
+                    4 -> this.add(MainData("test$i",R.mipmap.image05))
+                    5 -> this.add(MainData("test$i",R.mipmap.image06))
+                    6 -> this.add(MainData("test$i",R.mipmap.image07))
+                    7 -> this.add(MainData("test$i",R.mipmap.image08))
+                    8 -> this.add(MainData("test$i",R.mipmap.image09))
+                    9 -> this.add(MainData("test$i",R.mipmap.image10))
+                    10 -> this.add(MainData("test$i",R.mipmap.image11))
+                    11 -> this.add(MainData("test$i",R.mipmap.image12))
+                    12 -> this.add(MainData("test$i",R.mipmap.image13))
+                    13 -> this.add(MainData("test$i",R.mipmap.image14))
+                    14 -> this.add(MainData("test$i",R.mipmap.image15))
+                    15 -> this.add(MainData("test$i",R.mipmap.image16))
+                    16 -> this.add(MainData("test$i",R.mipmap.image17))
+                    17 -> this.add(MainData("test$i",R.mipmap.image18))
+                    18 -> this.add(MainData("test$i",R.mipmap.image19))
+                    19 -> this.add(MainData("test$i",R.mipmap.image20))
+                    20 -> this.add(MainData("test$i",R.mipmap.image21))
+                    21 -> this.add(MainData("test$i",R.mipmap.image22))
+                    22 -> this.add(MainData("test$i",R.mipmap.image23))
+                    23 -> this.add(MainData("test$i",R.mipmap.image24))
+                    24 -> this.add(MainData("test$i",R.mipmap.image25))
                 }
             }
             mainAdapter = MainAdapter(R.layout.adapter_main_item,this)
+            setAdapterOnclick()
             main_recycler.layoutManager = LinearLayoutManager(this@MainActivity)
             main_recycler.adapter = mainAdapter
-//            tv_status_bar.setOnClickListener {
-//                StatusBarActivity.enter(this@MainActivity)
-//            }
         }
         UserPreferences(UserPreferences.KEY_USER_NAME,"123")
+    }
+
+    private fun setAdapterOnclick() {
+        mainAdapter?.setOnItemChildClickListener { adapter, view, position ->
+            when(position){
+                0-> WeatherActivity.enter(this@MainActivity)
+                1-> StatusBarActivity.enter(this@MainActivity)
+            }
+        }
     }
 
     override fun doScene() {
