@@ -63,6 +63,7 @@ ext {
             logdot    : "com.tzlog.dotlib:TzLogDotLib:1.0.66@aar",
             smartswipe: "com.billy.android:smart-swipe:1.0.4",
             smartdraw : "com.wuyr:arrowdrawable:1.0.1",
+            greendao  : "org.greenrobot:greendao:3.2.0",
     ]
 
     androidxAddress = androidAndSupportD.values()

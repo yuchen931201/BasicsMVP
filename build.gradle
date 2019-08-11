@@ -3,7 +3,7 @@ apply from: 'config.gradle'
 
 buildscript {
 
-    ext.kotlin_version = '1.3.41'
+    ext.kotlin_version = '1.3.31'
     System.properties['com.android.build.gradle.overrideVersionCheck'] = 'true'
 
     repositories {
@@ -28,8 +28,10 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.1'
+        classpath 'com.android.tools.build:gradle:3.4.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.billy.android:cc-register:1.1.1'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.0' // add plugin
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
 
@@ -46,7 +48,7 @@ allprojects {
         google()
         jcenter()
         maven { url "https://jitpack.io" }
-        maven { url "https://github.com/tzryan/KlogDot/raw/master"}
+        maven { url "https://github.com/tzryan/KlogDot/raw/master" }
     }
     configurations.all {
         resolutionStrategy {

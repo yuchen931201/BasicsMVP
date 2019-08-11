@@ -44,8 +44,14 @@ class MyApp : Application() {
         context = applicationContext
         LogUtils.getConfig().isLogSwitch = BuildConfig.DEBUG
         this.registerActivityLifecycleCallbacks(mActivityLifecycleCallbacks)
+        initGreenDao()
         initSwipe()
         initGlide()
+    }
+
+    fun initGreenDao(){
+//        DaoMaster.
+//        CC.enableDebug(true)
     }
 
     fun initSwipe() {

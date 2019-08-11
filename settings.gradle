@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':ccphoto'
 //project(':adapterLib').projectDir = new File('adapterLibrary')
