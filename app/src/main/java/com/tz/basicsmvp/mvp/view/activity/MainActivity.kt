@@ -1,6 +1,8 @@
 package com.tz.basicsmvp.mvp.view.activity
 
 import android.annotation.SuppressLint
+import android.view.LayoutInflater
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseViewHolder
 import com.tz.basicsmvp.R
@@ -79,6 +81,8 @@ class MainActivity : BaseActivity(), MainContract.View{
                 1-> StatusBarActivity.enter(this@MainActivity)
             }
         }
+       val header :View = LayoutInflater.from(this).inflate(R.layout.adapter_header,null)
+        mainAdapter?.addHeaderView(header)
     }
 
     override fun doScene() {
