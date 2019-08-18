@@ -7,6 +7,8 @@ buildscript {
     System.properties['com.android.build.gradle.overrideVersionCheck'] = 'true'
 
     repositories {
+        jcenter()
+        mavenCentral()
         maven { url 'https://dl.bintray.com/umsdk/release' }
 
         maven { url 'https://dl.bintray.com/guardian/android' }
@@ -23,22 +25,19 @@ buildscript {
 
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
         maven { url "https://jitpack.io" }
-        mavenCentral()
         google()
-        jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.billy.android:cc-register:1.1.1'
+//        classpath 'com.billy.android:cc-register:1.1.1'
 //        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.0' // add plugin
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
 
         //kotlin aspectJ
-//        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.4'
+//        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.5'
         //java aspectJ , not kotlin
-        //classpath 'org.aspectj:aspectjtools:1.8.9'
         //classpath 'org.aspectj:aspectjweaver:1.8.9'
     }
 }

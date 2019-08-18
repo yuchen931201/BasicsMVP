@@ -57,6 +57,11 @@ class MyApp : Application() {
         //SAK.unInstall()
     }
 
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+//        MultiDex.install(this)
+    }
+
     fun initGreenDao(){
 //        DaoMaster.
 //        CC.enableDebug(true)

@@ -53,9 +53,10 @@ ext {
     ]
 
     othersD = [
+//            multidex  : 'com.android.support:multidex:1.0.0',
             flexbox   : "com.google.android:flexbox:$dependVersion.flexboxLib", //google 开源布局库
             ktxId     : "androidx.core:core-ktx:1.0.1", //kotlin 扩展
-//            aspectj : "org.aspectj:aspectjrt:$dependVersion.aspectjLib", //AOP
+//            aspectj   : "org.aspectj:aspectjrt:$dependVersion.aspectjLib", //AOP
             blankj    : "com.blankj:utilcodex:$dependVersion.blankjLib",
             permi     : "com.yanzhenjie.permission:x:$dependVersion.permiLib",
             adapter   : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47",
@@ -65,6 +66,7 @@ ext {
             smartdraw : "com.wuyr:arrowdrawable:1.0.1",
             sak       : 'com.wanjian:sak:2.0.2',
 //            greendao  : "org.greenrobot:greendao:3.2.0",
+//            greendao  : "org.greenrobot:greendao:3.2.2",
     ]
 
     androidxAddress = androidAndSupportD.values()

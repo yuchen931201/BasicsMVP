@@ -4,8 +4,6 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-//apply plugin: 'android-aspectjx'
-
 //use kotlin annotation
 apply plugin: 'kotlin-kapt'
 
@@ -91,6 +89,7 @@ android {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
+
 }
 
 dependencies {
