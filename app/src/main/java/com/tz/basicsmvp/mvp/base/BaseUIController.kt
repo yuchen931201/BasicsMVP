@@ -9,8 +9,10 @@ import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import com.tz.basicsmvp.R
 import com.tz.basicsmvp.mvp.base.BaseActivity.Companion.TYPE_FULL_SCREEN
+import com.tz.basicsmvp.mvp.base.BaseActivity.Companion.TYPE_TITLE_MAIN
 import com.tz.basicsmvp.mvp.base.BaseActivity.Companion.TYPE_TITLE_NORMAL
 import com.tz.basicsmvp.mvp.view.custom.MultipleStatusView
+import com.tz.basicsmvp.utils.core.strategy.loadImage
 import com.tz.basicsmvp.utils.statusBar.StatusBarUtil
 
 /**
@@ -26,7 +28,10 @@ class BaseUIController<T> constructor(t: T) : IBaseUIController where T : Activi
     private val activity: T by lazy { t }
     private var statusView: MultipleStatusView? = null
 
-    private var iv_left_back: ImageView? =null
+    private var iv_left: ImageView? =null
+    private var iv_right: ImageView? =null
+    private var line_view: View? =null
+    private var title_bar: View? =null
     private var tv_title: TextView? =null
     private var tool_bar: Toolbar? =null
 
@@ -36,15 +41,30 @@ class BaseUIController<T> constructor(t: T) : IBaseUIController where T : Activi
         when (activity.layoutType()) {
             TYPE_TITLE_NORMAL -> {
                 v = inflater.inflate(R.layout.root_title_view, null)
-                iv_left_back = v.findViewById(R.id.iv_left_back)
+                iv_left = v.findViewById(R.id.iv_left)
+                loadImage(R.drawable.ic_left_black,iv_left)
+                title_bar = v.findViewById(R.id.title_bar)
+                iv_right = v.findViewById(R.id.iv_right)
                 tv_title = v.findViewById(R.id.tv_title)
                 tool_bar = v.findViewById(R.id.tool_bar)
-                iv_left_back?.setOnClickListener {
+                iv_left?.setOnClickListener {
                     activity.finish()
                 }
             }
             TYPE_FULL_SCREEN -> {
                 v = inflater.inflate(R.layout.root_full_screen_view, null)
+            }
+            TYPE_TITLE_MAIN ->{
+                v = inflater.inflate(R.layout.root_title_view, null)
+                iv_left = v.findViewById(R.id.iv_left)
+                loadImage(R.drawable.ic_home_black_24dp,iv_left)
+                iv_right = v.findViewById(R.id.iv_right)
+                loadImage(R.drawable.ic_dehaze_black_24dp,iv_right)
+                title_bar = v.findViewById(R.id.title_bar)
+                line_view = v.findViewById(R.id.line_view)
+                tv_title = v.findViewById(R.id.tv_title)
+                tv_title?.text = "主页"
+                tool_bar = v.findViewById(R.id.tool_bar)
             }
             else -> {
                 v = inflater.inflate(R.layout.root_title_view, null)
@@ -60,59 +80,45 @@ class BaseUIController<T> constructor(t: T) : IBaseUIController where T : Activi
         return v
     }
 
+
+    override fun setTitle(s: String){
+        tv_title?.text = s
+    }
+
+    override fun setLeftImage(any: Any){
+        loadImage(any,iv_left)
+    }
+
+    override fun setLeftClick(click: View.OnClickListener){
+        iv_left?.setOnClickListener(click)
+    }
+
+    override fun setRightImage(any: Any){
+        loadImage(any,iv_right)
+    }
+
+    override fun setRightClick(click: View.OnClickListener){
+        iv_right?.setOnClickListener(click)
+    }
+
+    override fun setLineColor(color: Int){
+        line_view?.setBackgroundColor(color)
+    }
+
+    override fun setToolbarColor(color: Int) {
+        tool_bar?.setBackgroundColor(color)
+    }
+
+    override fun setTitleBarColor(color: Int) {
+        title_bar?.setBackgroundColor(color)
+    }
+
     override fun setStatusBarFontDark(dark: Boolean) {
         try {
             StatusBarUtil.setStatusBarDarkTheme(activity,dark)
         }catch (e: Exception){
             e.printStackTrace()
         }
-
-//        // 小米MIUI
-//        try {
-//            val window = activity.window
-//            val clazz = activity.window.javaClass
-//            val layoutParams = Class.forName("android.view.MiuiWindowManager\$LayoutParams")
-//            val field = layoutParams.getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE")
-//            val darkModeFlag = field.getInt(layoutParams)
-//            val extraFlagField =
-//                clazz.getMethod("setExtraFlags", Int::class.javaPrimitiveType, Int::class.javaPrimitiveType)
-//            if (dark) {    //状态栏亮色且黑色字体
-//                extraFlagField.invoke(window, darkModeFlag, darkModeFlag)
-//            } else {       //清除黑色字体
-//                extraFlagField.invoke(window, 0, darkModeFlag)
-//            }
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//        }
-//
-//        // 魅族FlymeUI
-//        try {
-//            val window = activity.window
-//            val lp = window.attributes
-//            val darkFlag = WindowManager.LayoutParams::class.java.getDeclaredField("MEIZU_FLAG_DARK_STATUS_BAR_ICON")
-//            val meizuFlags = WindowManager.LayoutParams::class.java.getDeclaredField("meizuFlags")
-//            darkFlag.isAccessible = true
-//            meizuFlags.isAccessible = true
-//            val bit = darkFlag.getInt(null)
-//            var value = meizuFlags.getInt(lp)
-//            if (dark) {
-//                value = value or bit
-//            } else {
-//                value = value and bit.inv()
-//            }
-//            meizuFlags.setInt(lp, value)
-//            window.attributes = lp
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//        }
-//
-//        // android6.0+系统
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            if (dark) {
-//                activity.window.decorView.systemUiVisibility =
-//                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-//            }
-//        }
     }
 
     override fun getStatusBarHeight(): Int {
@@ -121,13 +127,9 @@ class BaseUIController<T> constructor(t: T) : IBaseUIController where T : Activi
         if (resourceId > 0) {
             statusBarHeight = activity.resources.getDimensionPixelSize(resourceId)
         }
-        //LogUtils.d("CompatToolbar", "状态栏高度：" + px2dp(statusBarHeight.toFloat()) + "dp")
         return statusBarHeight
     }
 
-    override fun setTitle(s: String){
-        tv_title?.text = s
-    }
 
     override fun getToolbar(): Toolbar?{
         return tool_bar

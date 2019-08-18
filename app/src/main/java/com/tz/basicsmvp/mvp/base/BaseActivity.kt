@@ -28,9 +28,9 @@ abstract class BaseActivity : AppCompatActivity(), IBaseActivity {
     companion object {
         const val TYPE_TITLE_NORMAL = 0
         const val TYPE_FULL_SCREEN = 1
+        const val TYPE_TITLE_MAIN = 2
 
-        private const val TOOLBAR_PADDING_TOP = 25 //dp
-        private const val TOOLBAR_HEIGHT = 73-25 //dp 83-25
+        private const val TOOLBAR_HEIGHT = 48 + 1 //dp 由设计师决定, 1dp是title的线
     }
 
     val uiController: IBaseUIController by lazy { BaseUIController(this) }
@@ -49,7 +49,7 @@ abstract class BaseActivity : AppCompatActivity(), IBaseActivity {
             localLayoutParams.flags = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS or localLayoutParams.flags
         }
         when(layoutType()){
-            TYPE_TITLE_NORMAL->{
+            TYPE_TITLE_NORMAL,TYPE_TITLE_MAIN->{
                 initToolBar()
             }
         }
@@ -57,12 +57,21 @@ abstract class BaseActivity : AppCompatActivity(), IBaseActivity {
     }
 
     /**
-     * 经测试不同手机厂商的StatusBarHeight都不尽相同
+     *
+     * (toolbar适配):
+     * 经测试不同手机商的StatusBarHeight都不尽相同,虽然values中已经设了固定dp,但为了适配所有手机(例如刘海屏),这里还需要动态设定
+     *
+     * (普通UI适配):
+     * 这里在多说一句,如何与设计师的px做适配,其实只要设计师的画布为苹果2X图(即宽:750px) 例如一个控件设计师宽高为 200px * 100px
+     * 在xml中我们可以设置为 100dp * 50dp
+     *
+     * (常见手机电量栏高度):
      * oppo               18dp
      * 小米                20dp
      * android4.4模拟器    25dp
      * android6.0模拟器    24dp
-     * 但是此方式 status_bar_height 获取系统电量栏高度也不安全,只能等到Google修改API再改了
+     *
+     * 但是此方式{@Link BaseUIController#getStatusBarHeight} 获取系统电量栏高度也不安全,只能等到Google修改API再改了
      * */
     private fun initToolBar(){
         uiController.getToolbar()?.run {
@@ -80,6 +89,34 @@ abstract class BaseActivity : AppCompatActivity(), IBaseActivity {
 
     protected fun setTitle(s: String){
         uiController.setTitle(s)
+    }
+
+    fun setLeftImage(any: Any){
+        uiController.setLeftImage(any)
+    }
+
+    fun setLeftClick(click: View.OnClickListener){
+        uiController.setLeftClick(click)
+    }
+
+    protected fun setRightImage(any: Any){
+        uiController.setRightImage(any)
+    }
+
+    protected fun setRightClick(click: View.OnClickListener){
+        uiController.setRightClick(click)
+    }
+
+    protected fun setLineColor(color: Int){
+        uiController.setLineColor(color)
+    }
+
+    protected fun setToolbarColor(color: Int){
+        uiController.setToolbarColor(color)
+    }
+
+    protected fun setTitleBarColor(color: Int){
+        uiController.setTitleBarColor(color)
     }
 
     /**

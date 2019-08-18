@@ -15,8 +15,8 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:foreground="?android:attr/selectableItemBackground"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="2dp">
+            app:cardCornerRadius="10dp"
+            app:cardElevation="4dp">
 
         <RelativeLayout
                 android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             <ImageView
                     android:id="@+id/image_bg"
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
+                    android:layout_height="170dp"
                     android:scaleType="centerCrop"
                     tools:src="@mipmap/image01"/>
 
@@ -37,7 +37,7 @@
                     android:layout_alignParentBottom="true"
                     android:background="#6000"
                     android:textColor="@color/white"
-                    android:textSize="24sp"
+                    android:textSize="18sp"
                     android:gravity="center"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"

@@ -16,6 +16,20 @@ interface IBaseUIController {
 
     fun getStatusView(): MultipleStatusView?
 
+    fun setLeftImage(any: Any)
+
+    fun setLeftClick(click: View.OnClickListener)
+
+    fun setRightImage(any: Any)
+
+    fun setRightClick(click: View.OnClickListener)
+
+    fun setLineColor(color: Int)
+
+    fun setToolbarColor(color: Int)
+
+    fun setTitleBarColor(color: Int)
+
     fun setTitle(s: String)
 
     fun getToolbar(): Toolbar?

@@ -1,6 +1,9 @@
 package com.tz.basicsmvp.mvp.view.activity
 
 import android.annotation.SuppressLint
+import android.graphics.Color
+import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseViewHolder
 import com.tz.basicsmvp.R
@@ -12,6 +15,9 @@ import com.tz.basicsmvp.mvp.view.adapter.MainAdapter
 import com.tz.basicsmvp.mvp.view.adapter.MainData
 import com.tz.basicsmvp.utils.UserPreferences
 import kotlinx.android.synthetic.main.activity_main.*
+import androidx.recyclerview.widget.GridLayoutManager
+
+
 
 class MainActivity : BaseActivity(), MainContract.View{
 
@@ -25,14 +31,16 @@ class MainActivity : BaseActivity(), MainContract.View{
     }
 
     override fun layoutType(): Int {
-        return TYPE_FULL_SCREEN
+        return TYPE_TITLE_MAIN
     }
 
     override fun layoutId(): Int { return R.layout.activity_main }
 
+    @SuppressLint("WrongConstant")
     override fun onFinishCreateView() {
 //        text_view_s.text = "我是测试文字，静态设置成功"
         //getStatusView()?.showEmpty()
+        initView()
         mData = arrayListOf()
         mData?.run {
             for(i in 0..24 step 1 ){
@@ -66,10 +74,18 @@ class MainActivity : BaseActivity(), MainContract.View{
             }
             mainAdapter = MainAdapter(R.layout.adapter_main_item,this)
             setAdapterOnclick()
-            main_recycler.layoutManager = LinearLayoutManager(this@MainActivity)
+//            main_recycler.layoutManager = LinearLayoutManager(this@MainActivity)
+            main_recycler.layoutManager = GridLayoutManager(this@MainActivity, 2, LinearLayoutManager.VERTICAL, false)
             main_recycler.adapter = mainAdapter
         }
         UserPreferences(UserPreferences.KEY_USER_NAME,"123")
+    }
+
+    private fun initView(){
+        setLeftClick(View.OnClickListener { })
+        setRightClick(View.OnClickListener { })
+        setTitleBarColor(ContextCompat.getColor(this,R.color.colorPrimary))
+        setToolbarColor(ContextCompat.getColor(this,R.color.colorPrimary))
     }
 
     private fun setAdapterOnclick() {

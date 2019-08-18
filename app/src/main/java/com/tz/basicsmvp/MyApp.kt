@@ -12,6 +12,8 @@ import com.tz.basicsmvp.mvp.view.activity.MainActivity
 import com.tz.basicsmvp.utils.core.ImageGo
 import com.tz.basicsmvp.utils.core.strategy.ImageOptions
 import com.tz.basicsmvp.utils.glide.GlideImageStrategy
+import com.wanjian.sak.SAK
+import com.wanjian.sak.config.Config
 import kotlin.properties.Delegates
 
 /**
@@ -47,6 +49,12 @@ class MyApp : Application() {
         initGreenDao()
         initSwipe()
         initGlide()
+        initTestTools()
+    }
+
+    fun initTestTools(){
+        SAK.init( this, Config.Build(this).build())
+        //SAK.unInstall()
     }
 
     fun initGreenDao(){

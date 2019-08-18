@@ -2,6 +2,6 @@
 <resources>
 
     <dimen name="toolBarPaddingTop">25dp</dimen>
-    <dimen name="toolBarHeight">73dp</dimen>
+    <dimen name="titleBarHeight">48dp</dimen>
 
 </resources>

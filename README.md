@@ -10,7 +10,7 @@ kotlin的MVP设计模式 基础框架, 框架正在建设中...
 ## 基础功能与库
 
 1.  retrofit2 网络框架封装与缓存 ---------- 100%
-2.  aop 面向切面编程 --------------------- 50%
+2.  aop 面向切面编程 --------------------- 10%
 3.  线程池封装 --------------------------- 100%
 4.  glide 图片加载 ---------------------- 100%
 5.  log日志与打点 ------------------------ 100%
@@ -20,7 +20,7 @@ kotlin的MVP设计模式 基础框架, 框架正在建设中...
 9.  权限适配 ----------------------------- 100%
 10. 本地数据库 --------------------------- 0%
 11. 推送与通知 --------------------------- 0%
-12. 开发调试工具 ------------------------- 0%
+12. 开发调试工具 ------------------------- 100%
 13. packer多渠道打包 --------------------- 20%
 14. 常用UI(dialog window浮层等) ---------- 0%
 15. 弹框周期管理 ------------------------- 90%
@@ -28,7 +28,7 @@ kotlin的MVP设计模式 基础框架, 框架正在建设中...
 17. 视频与直播播放器----------------------- 0%
 18. 多文件上传和断点下载------------------- 100%
 19. 常用动画封装工具 ---------------------- 0%
-20. 滑动下拉刷新工具 ---------------------- 50%
+20. 滑动下拉刷新工具 ---------------------- 100%
 21. 皮肤管理 ----------------------------- 0%
 22. 无网络离线浏览 ----------------------- 100%
 23. activity侧滑finish ------------------ 100%
@@ -53,8 +53,19 @@ kotlin的MVP设计模式 基础框架, 框架正在建设中...
 
 [CC组件化](https://github.com/luckybilly/CC)
 
+[UI内存查看调试工具](https://github.com/android-notes/SwissArmyKnife)
+
 
 ## 项目地址
 
 打开 [BasicsMVP](https://github.com/yuchen931201/BasicsMVP)。
 
+## local.properties
+
+mac:
+release.signing.keyPassword=123456
+debug.signing.storeFile=/Users/yuchen/Desktop/android/KotlinMVP/BasicsMVP/key/KmvpStore.jks
+sdk.dir=/Users/yuchen/Library/Android/sdk
+release.signing.storePassword=123456
+release.signing.storeFile=/Users/yuchen/Desktop/android/KotlinMVP/BasicsMVP/key/KmvpStore.jks
+release.signing.keyAlias=kmvpstore
