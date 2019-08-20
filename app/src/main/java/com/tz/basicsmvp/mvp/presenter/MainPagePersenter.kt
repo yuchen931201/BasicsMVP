@@ -45,7 +45,7 @@ class MainPagePersenter : BasePresenter<MainContract.View>(), MainContract.Prese
 
     override fun doSceneLoadMore(page: Int) {
         //TODO do everything
-        //doSceneGetData()
+        //doSceneWeatherData()
     }
 
 }

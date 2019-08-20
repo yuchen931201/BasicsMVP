@@ -16,7 +16,8 @@ import com.tz.basicsmvp.mvp.view.adapter.MainData
 import com.tz.basicsmvp.utils.UserPreferences
 import kotlinx.android.synthetic.main.activity_main.*
 import androidx.recyclerview.widget.GridLayoutManager
-
+import com.billy.android.swipe.SmartSwipe
+import com.billy.android.swipe.SmartSwipeRefresh
 
 
 class MainActivity : BaseActivity(), MainContract.View{
@@ -36,14 +37,26 @@ class MainActivity : BaseActivity(), MainContract.View{
 
     override fun layoutId(): Int { return R.layout.activity_main }
 
-    @SuppressLint("WrongConstant")
     override fun onFinishCreateView() {
 //        text_view_s.text = "我是测试文字，静态设置成功"
         //getStatusView()?.showEmpty()
         initView()
+        initData()
+        initRefresh()
+    }
+
+    private fun initView(){
+        setLeftClick(View.OnClickListener { })
+        setRightClick(View.OnClickListener { })
+        setTitleBarColor(ContextCompat.getColor(this,R.color.colorPrimary))
+        setToolbarColor(ContextCompat.getColor(this,R.color.colorPrimary))
+    }
+
+    @SuppressLint("WrongConstant")
+    private fun initData(){
         mData = arrayListOf()
         mData?.run {
-            for(i in 0..24 step 1 ){
+            for(i in 0..20 step 1 ){
                 when(i){
                     0 -> this.add(MainData("查看上海天气$i",R.mipmap.image01))
                     1 -> this.add(MainData("无状态栏$i",R.mipmap.image02))
@@ -75,18 +88,32 @@ class MainActivity : BaseActivity(), MainContract.View{
             mainAdapter = MainAdapter(R.layout.adapter_main_item,this)
             setAdapterOnclick()
 //            main_recycler.layoutManager = LinearLayoutManager(this@MainActivity)
-            main_recycler.layoutManager = GridLayoutManager(this@MainActivity, 2, LinearLayoutManager.VERTICAL, false)
+            main_recycler.layoutManager = GridLayoutManager(this@MainActivity,
+                2, LinearLayoutManager.VERTICAL, false)
             main_recycler.adapter = mainAdapter
         }
         UserPreferences(UserPreferences.KEY_USER_NAME,"123")
     }
 
-    private fun initView(){
-        setLeftClick(View.OnClickListener { })
-        setRightClick(View.OnClickListener { })
-        setTitleBarColor(ContextCompat.getColor(this,R.color.colorPrimary))
-        setToolbarColor(ContextCompat.getColor(this,R.color.colorPrimary))
+    private fun initRefresh(){
+        SmartSwipeRefresh.behindMode(main_recycler, false, true)
+            .setDataLoader(loader)
+
     }
+
+    val loader = object: SmartSwipeRefresh.SmartSwipeRefreshDataLoader{
+        override fun onRefresh( ssr:SmartSwipeRefresh) {
+            //加载刷新数据
+            ssr.finished(true);
+            ssr.setNoMoreData(false)
+        }
+
+        override fun onLoadMore( ssr:SmartSwipeRefresh) {
+            ssr.finished(true)
+            ssr.setNoMoreData(true)
+        }
+    };
+
 
     private fun setAdapterOnclick() {
         mainAdapter?.setOnItemChildClickListener { adapter, view, position ->
@@ -100,7 +127,7 @@ class MainActivity : BaseActivity(), MainContract.View{
     }
 
     override fun doScene() {
-//        mPresenter.doSceneGetData("上海")
+//        mPresenter.doSceneWeatherData("上海")
     }
 
     @SuppressLint("SetTextI18n")

@@ -10,7 +10,7 @@ class WeatherPersenter : BasePresenter<WeatherContract.View>(), WeatherContract.
 
     private val model by lazy { WeatherModel() }
 
-    override fun doSceneGetData(city: String) {
+    override fun doSceneWeatherData(city: String) {
         checkViewAttached()
         mRootView?.showLoading()
         var disposable = model.getWeatherData(city).subscribe({ onNext ->

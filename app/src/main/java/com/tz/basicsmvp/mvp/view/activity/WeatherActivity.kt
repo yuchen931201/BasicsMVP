@@ -52,7 +52,7 @@ class WeatherActivity : BaseActivity(), WeatherContract.View {
     }
 
     override fun doScene() {
-        mPersenter.doSceneGetData("上海")
+        mPersenter.doSceneWeatherData("上海")
     }
 
     override fun setData(data: WeatherBean) {

@@ -7,6 +7,7 @@ import com.tz.basicsmvp.rx.scheduler.SchedulerUtils
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
+
 class WeatherModel {
 
     fun getWeatherData(city: String): Observable<BaseJsonBean<WeatherBean>> {
