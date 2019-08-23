@@ -28,6 +28,7 @@ class MyApp : Application() {
 
     var currentActivity: Activity? = null
 
+
     companion object {
         //late init or
         var context: Context by Delegates.notNull()

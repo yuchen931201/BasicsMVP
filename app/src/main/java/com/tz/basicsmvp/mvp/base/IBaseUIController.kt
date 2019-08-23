@@ -2,7 +2,7 @@ package com.tz.basicsmvp.mvp.base
 
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import com.tz.basicsmvp.mvp.view.custom.MultipleStatusView
+import com.tz.basicsmvp.mvp.view.widget.MultipleStatusView
 
 /**
  * @ComputerCode: tianzhen

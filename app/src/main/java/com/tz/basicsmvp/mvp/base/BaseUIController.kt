@@ -11,7 +11,7 @@ import com.tz.basicsmvp.R
 import com.tz.basicsmvp.mvp.base.BaseActivity.Companion.TYPE_FULL_SCREEN
 import com.tz.basicsmvp.mvp.base.BaseActivity.Companion.TYPE_TITLE_MAIN
 import com.tz.basicsmvp.mvp.base.BaseActivity.Companion.TYPE_TITLE_NORMAL
-import com.tz.basicsmvp.mvp.view.custom.MultipleStatusView
+import com.tz.basicsmvp.mvp.view.widget.MultipleStatusView
 import com.tz.basicsmvp.utils.core.strategy.loadImage
 import com.tz.basicsmvp.utils.statusBar.StatusBarUtil
 

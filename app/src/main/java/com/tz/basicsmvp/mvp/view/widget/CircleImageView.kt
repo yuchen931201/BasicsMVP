@@ -1,4 +1,4 @@
-package com.tz.basicsmvp.mvp.view.custom
+package com.tz.basicsmvp.mvp.view.widget
 
 import android.content.Context
 import android.graphics.*

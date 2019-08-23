@@ -5,7 +5,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <com.tz.basicsmvp.mvp.view.custom.MultipleStatusView
+    <com.tz.basicsmvp.mvp.view.widget.MultipleStatusView
             android:id="@+id/status_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

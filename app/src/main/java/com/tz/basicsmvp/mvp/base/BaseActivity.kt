@@ -8,7 +8,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
-import com.tz.basicsmvp.mvp.view.custom.MultipleStatusView
+import com.tz.basicsmvp.mvp.view.widget.MultipleStatusView
 import com.yanzhenjie.permission.Action
 import com.yanzhenjie.permission.AndPermission
 import android.view.WindowManager
