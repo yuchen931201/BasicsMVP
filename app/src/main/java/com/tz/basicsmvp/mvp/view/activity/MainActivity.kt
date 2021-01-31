@@ -10,20 +10,19 @@ import com.tz.basicsmvp.R
 import com.tz.basicsmvp.mvp.Contract.MainContract
 import com.tz.basicsmvp.mvp.base.BaseActivity
 import com.tz.basicsmvp.mvp.model.bean.MainPageBean
-import com.tz.basicsmvp.mvp.presenter.MainPagePersenter
+import com.tz.basicsmvp.mvp.presenter.MainPagePresenter
 import com.tz.basicsmvp.mvp.view.adapter.MainAdapter
 import com.tz.basicsmvp.mvp.view.adapter.MainData
 import com.tz.basicsmvp.utils.UserPreferences
 import kotlinx.android.synthetic.main.activity_main.*
 import androidx.recyclerview.widget.GridLayoutManager
-import com.billy.android.swipe.SmartSwipe
 import com.billy.android.swipe.SmartSwipeRefresh
 
 
 class MainActivity : BaseActivity(), MainContract.View{
 
 
-    private val mPresenter by lazy { MainPagePersenter() }
+    private val mPresenter by lazy { MainPagePresenter() }
     private var mainAdapter:MainAdapter<MainData, BaseViewHolder>? = null
     private var mData:MutableList<MainData>? = null
 

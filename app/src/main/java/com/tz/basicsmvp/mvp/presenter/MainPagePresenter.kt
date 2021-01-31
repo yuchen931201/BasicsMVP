@@ -11,9 +11,9 @@ import com.tz.basicsmvp.mvp.model.MainPageModel
  * @QQ: 959699751
  * @CreateTime: Created on 2019/5/18 16:38
  * @Package: com.tz.basicsmvp.mvp.presenter
- * @Description: Persenter 负责逻辑的处理
+ * @Description: Presenter 负责逻辑的处理
  **/
-class MainPagePersenter : BasePresenter<MainContract.View>(), MainContract.Presenter {
+class MainPagePresenter : BasePresenter<MainContract.View>(), MainContract.Presenter {
 
     private val mainPageModel by lazy { MainPageModel() }
 

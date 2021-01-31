@@ -9,7 +9,7 @@ import com.tz.basicsmvp.R
 import com.tz.basicsmvp.mvp.Contract.WeatherContract
 import com.tz.basicsmvp.mvp.base.BaseActivity
 import com.tz.basicsmvp.mvp.model.bean.WeatherBean
-import com.tz.basicsmvp.mvp.presenter.WeatherPersenter
+import com.tz.basicsmvp.mvp.presenter.WeatherPresenter
 import kotlinx.android.synthetic.main.activity_weather.*
 import com.yanzhenjie.permission.Action
 
@@ -24,7 +24,7 @@ import com.yanzhenjie.permission.Action
 class WeatherActivity : BaseActivity(), WeatherContract.View {
 
 
-    val mPersenter by lazy { WeatherPersenter() }
+    val mPersenter by lazy { WeatherPresenter() }
 
     init {
         mPersenter.attachView(this)

@@ -32,8 +32,6 @@ data class MainPageBean(
     @SerializedName("aqi") var aqi: APIItem? = null
 ) : Serializable {
 
-    @SerializedName("names") val names: Array<String>? = null
-
     data class IndexItem(
         @SerializedName("iname") var iname: String,
         @SerializedName("ivalue") var ivalue: String, @SerializedName("detail") var detail: String

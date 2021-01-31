@@ -5,7 +5,7 @@ import com.tz.basicsmvp.mvp.Contract.WeatherContract
 import com.tz.basicsmvp.mvp.base.BasePresenter
 import com.tz.basicsmvp.mvp.model.WeatherModel
 
-class WeatherPersenter : BasePresenter<WeatherContract.View>(), WeatherContract.Persenter {
+class WeatherPresenter : BasePresenter<WeatherContract.View>(), WeatherContract.Persenter {
 
 
     private val model by lazy { WeatherModel() }
