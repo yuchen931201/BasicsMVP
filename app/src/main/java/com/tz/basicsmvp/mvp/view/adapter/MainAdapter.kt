@@ -1,17 +1,10 @@
 package com.tz.basicsmvp.mvp.view.adapter
 
-import android.graphics.Bitmap
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.widget.ImageView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.tz.basicsmvp.R
-import com.tz.basicsmvp.utils.core.listener.OnImageListener
-import com.tz.basicsmvp.utils.core.strategy.ImageOptions
-import com.tz.basicsmvp.utils.core.strategy.loadBlur
 import com.tz.basicsmvp.utils.core.strategy.loadImage
-import com.tz.basicsmvp.utils.core.utils.ImageConstant
 
 /**
  * @ComputerCode: tianzhen
