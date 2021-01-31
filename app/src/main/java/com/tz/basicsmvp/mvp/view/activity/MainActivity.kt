@@ -23,7 +23,7 @@ class MainActivity : BaseActivity(), MainContract.View{
 
 
     private val mPresenter by lazy { MainPagePresenter() }
-    private var mainAdapter:MainAdapter<MainData, BaseViewHolder>? = null
+    private var mainAdapter:MainAdapter<MainData>? = null
     private var mData:MutableList<MainData>? = null
 
     init {
@@ -84,7 +84,7 @@ class MainActivity : BaseActivity(), MainContract.View{
                     24 -> this.add(MainData("test$i",R.mipmap.image25))
                 }
             }
-            mainAdapter = MainAdapter(R.layout.adapter_main_item,this)
+            mainAdapter = MainAdapter(this)
             setAdapterOnclick()
 //            main_recycler.layoutManager = LinearLayoutManager(this@MainActivity)
             main_recycler.layoutManager = GridLayoutManager(this@MainActivity,

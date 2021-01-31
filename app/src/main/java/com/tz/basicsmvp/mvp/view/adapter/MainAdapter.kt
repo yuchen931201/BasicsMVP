@@ -21,18 +21,15 @@ import com.tz.basicsmvp.utils.core.utils.ImageConstant
  * @Package: com.tz.basicsmvp.mvp.view.adapter
  * @Description:
  **/
-class MainAdapter<T, K : BaseViewHolder> : BaseQuickAdapter<T, K> {
+class MainAdapter<T> constructor(data: List<T>): BaseQuickAdapter<T, BaseViewHolder> (R.layout.adapter_main_item, data){
 
-    constructor(layoutResId: Int, data: List<T>) : super(layoutResId, data)
-
-    override fun convert(helper: K, item: T) {
+    override fun convert(helper: BaseViewHolder, item: T) {
         val idata = (item as MainData)
         helper.setText(R.id.tv_name, idata.name)
         val image_bg = helper.getView<ImageView>(R.id.image_bg)
         loadImage(idata.resId, image_bg)
         helper.addOnClickListener(R.id.card_view)
     }
-
 }
 
 data class MainData(val name: String, val resId: Int)
